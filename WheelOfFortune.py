@@ -114,7 +114,7 @@ def getNumberBetween(prompt, min, max):
 #    { "type": "bankrupt", "text": "Bankrupt", "prize": false },
 #    { "type": "loseturn", "text": "Lose a turn", "prize": false }
 def spinWheel():
-    with open("wheel.json", 'r') as f:
+    with open("data\wheel.json", 'r') as f:
         wheel = json.loads(f.read())
         return random.choice(wheel)
 
@@ -122,7 +122,7 @@ def spinWheel():
 # Example:
 #     ("Artist & Song", "Whitney Houston's I Will Always Love You")
 def getRandomCategoryAndPhrase():
-    with open("phrases.json", 'r') as f:
+    with open("data\phrases.json", 'r') as f:
         phrases = json.loads(f.read())
 
         category = random.choice(list(phrases.keys()))
