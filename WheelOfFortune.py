@@ -83,6 +83,7 @@ import json
 import random
 import time
 import os
+from pathlib import Path
 
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 VOWELS  = 'AEIOU'
@@ -114,15 +115,20 @@ def getNumberBetween(prompt, min, max):
 #    { "type": "bankrupt", "text": "Bankrupt", "prize": false },
 #    { "type": "loseturn", "text": "Lose a turn", "prize": false }
 def spinWheel():
-    with open("data\wheel.json", 'r') as f:
+    wheel_path = Path("data/wheel.json")
+
+    with open(wheel_path, 'r') as f:
         wheel = json.loads(f.read())
         return random.choice(wheel)
 
 # Returns a category & phrase (as a tuple) to guess
 # Example:
 #     ("Artist & Song", "Whitney Houston's I Will Always Love You")
+
 def getRandomCategoryAndPhrase():
-    with open("data\phrases.json", 'r') as f:
+    phrases_path = Path("data/phrases.json")
+
+    with open(phrases_path, 'r') as f:
         phrases = json.loads(f.read())
 
         category = random.choice(list(phrases.keys()))
@@ -216,7 +222,7 @@ while True:
     player = players[playerIndex]
     wheelPrize = spinWheel()
 
-    os.system('cls')
+    os.system('cls||clear')
     print(showBoard(category, obscurePhrase(phrase, guessed), guessed))
     print('')
     print('{} spins...'.format(player.name))
